@@ -1,0 +1,30 @@
+{
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Modette\\Journalist\\Core\\": "packages/core/src",
+      "Modette\\Journalist\\Admin\\": "packages/admin/src",
+      "Modette\\Journalist\\Front\\": "packages/front/src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../modette/packages/**",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "modette/core": "^1.0@dev",
+    "modette/core-ext-ui": "^1.0@dev",
+    "modette/core-ext-api": "^1.0@dev",
+    "modette/core-ext-orm": "^1.0@dev",
+    "modette/core-ext-sql": "^1.0@dev",
+    "modette/core-ext-admin": "^1.0@dev",
+    "modette/core-ext-front": "^1.0@dev"
+  }
+}
