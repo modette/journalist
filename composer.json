@@ -14,6 +14,13 @@
       "options": {
         "symlink": true
       }
+    },
+    {
+      "type": "path",
+      "url": "../accounts/packages/**",
+      "options": {
+        "symlink": true
+      }
     }
   ],
   "minimum-stability": "dev",
@@ -25,6 +32,8 @@
     "modette/core-ext-orm": "^1.0@dev",
     "modette/core-ext-sql": "^1.0@dev",
     "modette/core-ext-admin": "^1.0@dev",
-    "modette/core-ext-front": "^1.0@dev"
+    "modette/core-ext-front": "^1.0@dev",
+    "modette/accounts-core": "^1.0@dev",
+    "modette/accounts-admin": "^1.0@dev"
   }
 }

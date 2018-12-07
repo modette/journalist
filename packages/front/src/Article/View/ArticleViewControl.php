@@ -2,9 +2,19 @@
 
 namespace Modette\Journalist\Front\Article\View;
 
-use Modette\UI\Control\Base\BaseControl;
+use Modette\Journalist\Core\Article\Article;
+use Modette\UI\Base\Control\BaseControl;
 
 class ArticleViewControl extends BaseControl
 {
+
+	/** @var Article */
+	private $article;
+
+	public function __construct(Article $article)
+	{
+		parent::__construct();
+		$this->article = $article;
+	}
 
 }

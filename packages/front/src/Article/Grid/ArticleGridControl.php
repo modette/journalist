@@ -2,7 +2,7 @@
 
 namespace Modette\Journalist\Front\Article\Grid;
 
-use Modette\UI\Control\Base\BaseControl;
+use Modette\UI\Base\Control\BaseControl;
 
 class ArticleGridControl extends BaseControl
 {

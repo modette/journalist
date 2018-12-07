@@ -4,7 +4,7 @@ namespace Modette\Journalist\Core\Category;
 
 use Modette\Journalist\Core\Article\Article;
 use Modette\Orm\Property\CreatedAt;
-use Modette\Orm\Property\PrimaryUUID;
+use Modette\Orm\Property\UUID;
 use Modette\Orm\Property\UpdatedAt;
 use Nextras\Orm\Entity\Entity;
 use Nextras\Orm\Relationships\OneHasMany;
@@ -18,7 +18,7 @@ use Nextras\Orm\Relationships\OneHasMany;
 class Category extends Entity
 {
 
-	use PrimaryUUID;
+	use UUID;
 	use CreatedAt;
 	use UpdatedAt;
 

@@ -2,24 +2,24 @@
 
 namespace Modette\Journalist\Core\Author;
 
+use Modette\Accounts\Core\Person\Person;
 use Modette\Journalist\Core\Article\Article;
 use Modette\Orm\Property\CreatedAt;
-use Modette\Orm\Property\PrimaryUUID;
+use Modette\Orm\Property\UUID;
 use Modette\Orm\Property\UpdatedAt;
 use Nextras\Orm\Entity\Entity;
 use Nextras\Orm\Relationships\OneHasMany;
 
 /**
- * @property string               $description
- * @property-read Person          $person
- * @property Article[]|OneHasMany $articles    {1:m Article::$author}
- * @todo - person
+ * @property      string               $description
+ * @property-read Person               $person      {1:1 Person, isMain=true, oneSided=true}
+ * @property      Article[]|OneHasMany $articles    {1:m Article::$author}
  * @todo - optional description?
  */
 class Author extends Entity
 {
 
-	use PrimaryUUID;
+	use UUID;
 	use CreatedAt;
 	use UpdatedAt;
 

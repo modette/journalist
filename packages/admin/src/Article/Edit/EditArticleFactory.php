@@ -2,9 +2,11 @@
 
 namespace Modette\Journalist\Admin\Article\Edit;
 
+use Modette\Journalist\Core\Article\Article;
+
 interface EditArticleFactory
 {
 
-	public function create(): EditArticleControl;
+	public function create(Article $article): EditArticleControl;
 
 }

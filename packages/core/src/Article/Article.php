@@ -6,7 +6,7 @@ use Modette\Journalist\Core\Author\Author;
 use Modette\Journalist\Core\Category\Category;
 use Modette\Journalist\Core\Tag\Tag;
 use Modette\Orm\Property\CreatedAt;
-use Modette\Orm\Property\PrimaryUUID;
+use Modette\Orm\Property\UUID;
 use Modette\Orm\Property\UpdatedAt;
 use Nextras\Dbal\Utils\DateTimeImmutable;
 use Nextras\Orm\Entity\Entity;
@@ -23,13 +23,13 @@ use Nextras\Orm\Relationships\ManyHasMany;
  *
  * @todo - history
  * @todo - publikace
- * @todo - vygenerovat perex pokud je prázdný?
  * @todo - stavy vytváření a ověření článku
+ * @todo - verzování a zamykání
  */
 class Article extends Entity
 {
 
-	use PrimaryUUID;
+	use UUID;
 	use CreatedAt;
 	use UpdatedAt;
 

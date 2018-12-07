@@ -4,7 +4,7 @@ namespace Modette\Journalist\Core\Tag;
 
 use Modette\Journalist\Core\Article\Article;
 use Modette\Orm\Property\CreatedAt;
-use Modette\Orm\Property\PrimaryUUID;
+use Modette\Orm\Property\UUID;
 use Modette\Orm\Property\UpdatedAt;
 use Nextras\Orm\Entity\Entity;
 use Nextras\Orm\Relationships\ManyHasMany;
@@ -16,7 +16,7 @@ use Nextras\Orm\Relationships\ManyHasMany;
 class Tag extends Entity
 {
 
-	use PrimaryUUID;
+	use UUID;
 	use CreatedAt;
 	use UpdatedAt;
 
