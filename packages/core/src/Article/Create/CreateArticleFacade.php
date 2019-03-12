@@ -2,12 +2,12 @@
 
 namespace Modette\Journalist\Core\Article\Create;
 
-use Modette\Core\Exception\Logic\InvalidStateException;
 use Modette\Journalist\Core\Article\Article;
 use Modette\Journalist\Core\Article\ArticleRepository;
+use Modette\Orm\Facade\CreateEntityFacade;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class CreateArticleFacade
+class CreateArticleFacade extends CreateEntityFacade
 {
 
 	/** @var ArticleRepository */
@@ -24,10 +24,7 @@ class CreateArticleFacade
 
 	public function create(Article $article): void
 	{
-		if ($article->isPersisted()) {
-			throw new InvalidStateException(sprintf('Entity of type "%s" is already persisted. Use update facade to update entity.', Article::class));
-		}
-
+		$this->check($article);
 		$this->articleRepository->persistAndFlush($article);
 		$this->eventDispatcher->dispatch(CreateArticleEvent::NAME, new CreateArticleEvent($article));
 	}
