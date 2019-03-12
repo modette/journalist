@@ -29,4 +29,22 @@ class CreateArticleFacade extends CreateEntityFacade
 		$this->eventDispatcher->dispatch(CreateArticleEvent::NAME, new CreateArticleEvent($article));
 	}
 
+	/**
+	 * @param Article[] $articles
+	 */
+	public function createMultiple(array $articles): void
+	{
+		foreach ($articles as $article) {
+			$this->check($article);
+			$this->articleRepository->persist($article);
+		}
+
+		$this->articleRepository->flush();
+
+		//TODO - event with all articles
+		foreach ($articles as $article) {
+			$this->eventDispatcher->dispatch(CreateArticleEvent::NAME, new CreateArticleEvent($article));
+		}
+	}
+
 }

@@ -29,4 +29,21 @@ class UpdateArticleFacade extends UpdateEntityFacade
 		$this->eventDispatcher->dispatch(UpdateArticleEvent::NAME, new UpdateArticleEvent($article));
 	}
 
+	/**
+	 * @param Article[] $articles
+	 */
+	public function updateMultiple(array $articles): void
+	{
+		foreach ($articles as $article) {
+			$this->check($article);
+		}
+
+		$this->articleRepository->flush();
+
+		//TODO - event with all articles
+		foreach ($articles as $article) {
+			$this->eventDispatcher->dispatch(UpdateArticleEvent::NAME, new UpdateArticleEvent($article));
+		}
+	}
+
 }
