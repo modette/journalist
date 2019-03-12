@@ -1,0 +1,17 @@
+services:
+    # Article
+    modette.journalist.admin.article.presenter:
+        factory: Modette\Journalist\Admin\Article\Presenter\ArticlePresenter
+
+    modette.journalist.admin.article.createFactory:
+        factory: Modette\Journalist\Admin\Article\Create\CreateArticleFactory
+
+    modette.journalist.admin.article.editFactory:
+        factory: Modette\Journalist\Admin\Article\Edit\EditArticleFactory
+
+    # Articles
+    modette.journalist.admin.articles.presenter:
+        factory: Modette\Journalist\Admin\Articles\Presenter\ArticlesPresenter
+
+    modette.journalist.admin.articles.gridFactory:
+        factory: Modette\Journalist\Admin\Articles\Grid\ArticleGridFactory

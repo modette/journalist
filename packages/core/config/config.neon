@@ -1,0 +1,32 @@
+services:
+    # Article
+    modette.journalist.core.article.mapper:
+        factory: Modette\Journalist\Core\Article\Mapper\ArticlePgsqlMapper
+        class: Modette\Journalist\Core\Article\Mapper\ArticleMapper
+
+    modette.journalist.core.article.repository:
+        factory: Modette\Journalist\Core\Article\ArticleRepository
+
+    # Author
+    modette.journalist.core.author.mapper:
+        factory: Modette\Journalist\Core\Author\Mapper\AuthorPgsqlMapper
+        class: Modette\Journalist\Core\Author\Mapper\AuthorMapper
+
+    modette.journalist.core.author.repository:
+        factory: Modette\Journalist\Core\Author\AuthorRepository
+
+    # Category
+    modette.journalist.core.category.mapper:
+        factory: Modette\Journalist\Core\Category\Mapper\CategoryPgsqlMapper
+        class: Modette\Journalist\Core\Category\Mapper\CategoryMapper
+
+    modette.journalist.core.category.repository:
+        factory: Modette\Journalist\Core\Category\CategoryRepository
+
+    # Tag
+    modette.journalist.core.tag.mapper:
+        factory: Modette\Journalist\Core\Tag\Mapper\TagPgsqlMapper
+        class: Modette\Journalist\Core\Tag\Mapper\TagMapper
+
+    modette.journalist.core.tag.repository:
+        factory: Modette\Journalist\Core\Tag\TagRepository

@@ -5,9 +5,8 @@ namespace Modette\Journalist\Front\Article\Presenter;
 use Modette\Front\Base\Presenter\BaseFrontPresenter;
 use Modette\Journalist\Core\Article\Article;
 use Modette\Journalist\Core\Article\ArticleRepository;
-use Modette\Journalist\Front\Article\Grid\ArticleGridFactory;
+use Modette\Journalist\Front\Article\View\ArticleViewControl;
 use Modette\Journalist\Front\Article\View\ArticleViewFactory;
-use Nette\Application\BadRequestException;
 
 class ArticlePresenter extends BaseFrontPresenter
 {
@@ -18,43 +17,36 @@ class ArticlePresenter extends BaseFrontPresenter
 	/** @var ArticleViewFactory */
 	private $articleViewFactory;
 
-	/** @var ArticleGridFactory */
-	private $articleGridFactory;
-
 	public function __construct(
 		ArticleRepository $articleRepository,
-		ArticleViewFactory $articleViewFactory,
-		ArticleGridFactory $articleGridFactory
+		ArticleViewFactory $articleViewFactory
 	)
 	{
 		parent::__construct();
 		$this->articleRepository = $articleRepository;
 		$this->articleViewFactory = $articleViewFactory;
-		$this->articleGridFactory = $articleGridFactory;
 	}
 
-	/**
-	 * @todo - tady by se měl načítat spíš pomocí url article (url vychází z názvu)
-	 */
-	private function loadArticle(string $id): Article
+	public function actionDefault(string $id): void
 	{
+		$this->getArticle();
+	}
+
+	protected function createComponentView(): ArticleViewControl
+	{
+		return $this->articleViewFactory->create($this->getArticle());
+	}
+
+	private function getArticle(): Article
+	{
+		$id = $this->getParameter('id'); // TODO - use article url instead
 		$article = $this->articleRepository->getById($id);
 
 		if ($article === null) {
-			throw new BadRequestException();
+			$this->error('Article does not exists'); // TODO - article not found page
 		}
 
 		return $article;
-	}
-
-	public function actionView(string $id): void
-	{
-		$this['articleView'] = $this->articleViewFactory->create($this->loadArticle($id));
-	}
-
-	public function actionList(int $page = 1): void
-	{
-		$this['articleGrid'] = $this->articleGridFactory->create();
 	}
 
 }

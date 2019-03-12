@@ -2,12 +2,13 @@
 
 namespace Modette\Journalist\Admin\Article\Form;
 
+use Modette\UI\Base\Control\BaseControl;
 use Modette\UI\Forms\FormFactory;
 use Nette\Application\UI\Form;
 use Nette\Forms\Controls\TextArea;
 use Nette\Forms\Controls\TextInput;
 
-class ArticleFormFactory
+abstract class ArticleFormControl extends BaseControl
 {
 
 	/** @var FormFactory */
@@ -15,10 +16,11 @@ class ArticleFormFactory
 
 	public function __construct(FormFactory $formFactory)
 	{
+		parent::__construct();
 		$this->formFactory = $formFactory;
 	}
 
-	public function createForm(): Form
+	protected function createForm(): Form
 	{
 		$form = $this->formFactory->create();
 
@@ -27,6 +29,14 @@ class ArticleFormFactory
 		$form['content'] = new TextArea('content');
 
 		return $form;
+	}
+
+	abstract public function createComponentForm(): Form;
+
+	public function render(): void
+	{
+		$this->template->setFile(__DIR__ . '/templates/default.latte');
+		$this->template->render();
 	}
 
 }

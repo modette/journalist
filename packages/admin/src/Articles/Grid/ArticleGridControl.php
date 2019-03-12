@@ -1,16 +1,15 @@
 <?php declare(strict_types = 1);
 
-namespace Modette\Journalist\Admin\Article\View;
+namespace Modette\Journalist\Admin\Articles\Grid;
 
-use Modette\Journalist\Core\Article\Article;
 use Modette\UI\Base\Control\BaseControl;
 
-class ArticleViewControl extends BaseControl
+class ArticleGridControl extends BaseControl
 {
 
-	public function __construct(Article $article)
+	protected function createComponentGrid(): void
 	{
-		parent::__construct();
+		//TODO - create datagrid
 	}
 
 	public function render(): void

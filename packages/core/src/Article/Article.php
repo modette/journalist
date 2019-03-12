@@ -21,6 +21,7 @@ use Nextras\Orm\Relationships\ManyHasMany;
  * @property Tag[]|ManyHasMany $tags        {m:m Tag, isMain = true}
  * @property Category          $category    {m:1 Category::$articles}
  *
+ * @todo - změna url článku -> redirect ze staré na novou
  * @todo - history
  * @todo - publikace
  * @todo - stavy vytváření a ověření článku

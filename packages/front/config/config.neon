@@ -1,0 +1,14 @@
+services:
+    # Article
+    modette.journalist.front.article.presenter:
+        factory: Modette\Journalist\Front\Article\Presenter\ArticlePresenter
+
+    modette.journalist.front.article.viewFactory:
+        factory: Modette\Journalist\Front\Article\View\ArticleViewFactory
+
+    # Articles
+    modette.journalist.front.articles.presenter:
+        factory: Modette\Journalist\Front\Articles\Presenter\ArticlesPresenter
+
+    modette.journalist.front.articles.gridFactory:
+        factory: Modette\Journalist\Front\Articles\Grid\ArticleGridFactory
