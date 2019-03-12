@@ -4,7 +4,7 @@ namespace Modette\Journalist\Admin\Article\Edit;
 
 use Modette\Journalist\Admin\Article\Form\ArticleFormControl;
 use Modette\Journalist\Core\Article\Article;
-use Modette\Journalist\Core\Article\ArticleRepository;
+use Modette\Journalist\Core\Article\Update\UpdateArticleAccessor;
 use Modette\UI\Forms\FormFactory;
 use Nette\Application\UI\Form;
 
@@ -20,14 +20,14 @@ class EditArticleControl extends ArticleFormControl
 	/** @var Article */
 	private $article;
 
-	/** @var ArticleRepository */
-	private $articleRepository;
+	/** @var UpdateArticleAccessor */
+	private $updateArticleAccessor;
 
-	public function __construct(Article $article, FormFactory $formFactory, ArticleRepository $articleRepository)
+	public function __construct(Article $article, FormFactory $formFactory, UpdateArticleAccessor $updateArticleAccessor)
 	{
 		parent::__construct($formFactory);
 		$this->article = $article;
-		$this->articleRepository = $articleRepository;
+		$this->updateArticleAccessor = $updateArticleAccessor;
 	}
 
 	public function createComponentForm(): Form
@@ -53,7 +53,7 @@ class EditArticleControl extends ArticleFormControl
 		$this->article->perex = $values->perex;
 		$this->article->content = $values->content;
 
-		$this->articleRepository->persistAndFlush($this->article);
+		$this->updateArticleAccessor->get()->update($this->article);
 		$this->onSuccess($this->article);
 	}
 

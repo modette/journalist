@@ -7,6 +7,18 @@ services:
     modette.journalist.core.article.repository:
         factory: Modette\Journalist\Core\Article\ArticleRepository
 
+    modette.journalist.core.article.create.accessor:
+        implement: Modette\Journalist\Core\Article\Create\CreateArticleAccessor
+
+    modette.journalist.core.article.create.facade:
+        factory: Modette\Journalist\Core\Article\Create\CreateArticleFacade
+
+    modette.journalist.core.article.update.accessor:
+        implement: Modette\Journalist\Core\Article\Update\UpdateArticleAccessor
+
+    modette.journalist.core.article.update.facade:
+        factory: Modette\Journalist\Core\Article\Update\UpdateArticleFacade
+
     # Author
     modette.journalist.core.author.mapper:
         factory: Modette\Journalist\Core\Author\Mapper\AuthorPgsqlMapper

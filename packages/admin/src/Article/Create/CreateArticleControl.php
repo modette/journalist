@@ -5,7 +5,7 @@ namespace Modette\Journalist\Admin\Article\Create;
 use Modette\Accounts\Core\Person\Person;
 use Modette\Journalist\Admin\Article\Form\ArticleFormControl;
 use Modette\Journalist\Core\Article\Article;
-use Modette\Journalist\Core\Article\ArticleRepository;
+use Modette\Journalist\Core\Article\Create\CreateArticleAccessor;
 use Modette\Journalist\Core\Author\Author;
 use Modette\UI\Forms\FormFactory;
 use Nette\Application\UI\Form;
@@ -19,13 +19,13 @@ class CreateArticleControl extends ArticleFormControl
 	/** @var array<callable(Article $article): void> */
 	public $onSuccess = [];
 
-	/** @var ArticleRepository */
-	private $articleRepository;
+	/** @var CreateArticleAccessor */
+	private $createArticleAccessor;
 
-	public function __construct(FormFactory $formFactory, ArticleRepository $articleRepository)
+	public function __construct(FormFactory $formFactory, CreateArticleAccessor $createArticleAccessor)
 	{
 		parent::__construct($formFactory);
-		$this->articleRepository = $articleRepository;
+		$this->createArticleAccessor = $createArticleAccessor;
 	}
 
 	public function createComponentForm(): Form
@@ -45,7 +45,8 @@ class CreateArticleControl extends ArticleFormControl
 
 		$author = new Author(new Person('', '', ''), ''); //TODO - author
 		$article = new Article($values->title, $values->perex, $values->content, $author);
-		$this->articleRepository->persistAndFlush($article);
+
+		$this->createArticleAccessor->get()->create($article);
 		$this->onSuccess($article);
 	}
 
