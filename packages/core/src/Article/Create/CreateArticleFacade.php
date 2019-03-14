@@ -4,6 +4,7 @@ namespace Modette\Journalist\Core\Article\Create;
 
 use Modette\Journalist\Core\Article\Article;
 use Modette\Journalist\Core\Article\ArticleRepository;
+use Modette\Journalist\Core\Author\Author;
 use Modette\Orm\Facade\CreateEntityFacade;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -22,7 +23,7 @@ class CreateArticleFacade extends CreateEntityFacade
 		$this->eventDispatcher = $eventDispatcher;
 	}
 
-	public function create(Article $article): void
+	public function save(Article $article): void
 	{
 		$this->check($article);
 		$this->articleRepository->persistAndFlush($article);
@@ -32,7 +33,7 @@ class CreateArticleFacade extends CreateEntityFacade
 	/**
 	 * @param Article[] $articles
 	 */
-	public function createMultiple(array $articles): void
+	public function saveMultiple(array $articles): void
 	{
 		foreach ($articles as $article) {
 			$this->check($article);
@@ -45,6 +46,13 @@ class CreateArticleFacade extends CreateEntityFacade
 		foreach ($articles as $article) {
 			$this->eventDispatcher->dispatch(CreateArticleEvent::NAME, new CreateArticleEvent($article));
 		}
+	}
+
+	public function createEntity(string $title, string $perex, string $content, Author $author): Article
+	{
+		$article = new Article($title, $perex, $content, $author);
+		$this->articleRepository->attach($article);
+		return $article;
 	}
 
 }

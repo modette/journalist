@@ -42,11 +42,12 @@ class CreateArticleControl extends ArticleFormControl
 	private function processForm(Form $form): void
 	{
 		$values = $form->getValues();
+		$facade = $this->createArticleAccessor->get();
 
 		$author = new Author(new Person('', '', ''), ''); //TODO - author
-		$article = new Article($values->title, $values->perex, $values->content, $author);
+		$article = $facade->createEntity($values->title, $values->perex, $values->content, $author);
 
-		$this->createArticleAccessor->get()->create($article);
+		$facade->save($article);
 		$this->onSuccess($article);
 	}
 
