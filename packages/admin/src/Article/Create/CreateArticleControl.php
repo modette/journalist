@@ -48,6 +48,7 @@ class CreateArticleControl extends ArticleFormControl
 		$article = $facade->createEntity($values->title, $values->perex, $values->content, $author);
 
 		$facade->save($article);
+		$this->presenter->flashSuccess('Article saved');
 		$this->onSuccess($article);
 	}
 

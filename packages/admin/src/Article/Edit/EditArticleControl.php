@@ -54,6 +54,7 @@ class EditArticleControl extends ArticleFormControl
 		$this->article->content = $values->content;
 
 		$this->updateArticleAccessor->get()->update($this->article);
+		$this->presenter->flashSuccess('Article edited');
 		$this->onSuccess($this->article);
 	}
 

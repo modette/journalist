@@ -43,7 +43,6 @@ class ArticlePresenter extends BaseAdminPresenter
 		$control = $this->createArticleFactory->create();
 
 		$control->onSuccess[] = function (Article $article): void {
-			$this->flashSuccess('Article saved');
 			$this->redirect('view', [
 				'id' => $article->id,
 			]);
@@ -62,7 +61,6 @@ class ArticlePresenter extends BaseAdminPresenter
 		$control = $this->editArticleFactory->create($this->getArticle());
 
 		$control->onSuccess[] = function (Article $article): void {
-			$this->flashSuccess('Article edited');
 			$this->redirect('view', [
 				'id' => $article->id,
 			]);
