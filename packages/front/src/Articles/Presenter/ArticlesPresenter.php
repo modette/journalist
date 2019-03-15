@@ -22,6 +22,13 @@ class ArticlesPresenter extends BaseFrontPresenter
 	{
 	}
 
+	public function renderDefault(): void
+	{
+		if (!$this->developmentServer) {
+			$this['document-head-meta']->setRobots(['noindex', 'follow']);
+		}
+	}
+
 	protected function createComponentGrid(): ArticleGridControl
 	{
 		return $this->articleGridFactory->create();
